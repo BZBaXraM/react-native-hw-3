@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, Image, TouchableOpacity, Alert} from "react-native";
 
 
 const data = [
@@ -15,21 +15,32 @@ const data = [
         price: 19.99,
     }
 ];
+
 const Card = () => {
     const {title, description, price} = data[0];
+
+    const handlePress = () => {
+        Alert.alert(
+            "Product Information",
+            `Title: ${title}\nDescription: ${description}\nPrice: ${price}`
+        );
+    };
+
     return (
-        <View style={styles.container}>
-            <View style={styles.box}></View>
-            <View style={{flex: 1, flexDirection: "column", flexWrap: "wrap"}}>
-                <Text style={styles.text}>
-                    {title}
-                </Text>
-                <Text style={styles.text}>
-                    {description}
-                </Text>
-                ${price}
+        <TouchableOpacity onPress={handlePress}>
+            <View style={styles.container}>
+                <Image style={styles.box} source={{uri: "https://reactnative.dev/img/tiny_logo.png"}}/>
+                <View style={{flex: 1, flexDirection: "column", flexWrap: "wrap"}}>
+                    <Text style={styles.text}>
+                        {title}
+                    </Text>
+                    <Text style={styles.text}>
+                        {description}
+                    </Text>
+                    ${price}
+                </View>
             </View>
-        </View>
+        </TouchableOpacity>
     )
 };
 
